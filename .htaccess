@@ -1,0 +1,6 @@
+RewriteEngine On
+
+# Reescribe internamente cualquier petición hacia la carpeta public/,
+# sin que la URL visible en el navegador cambie.
+# Ej: http://localhost/MVC/verificar  ->  internamente sirve MVC/public/verificar
+RewriteRule ^(.*)$ public/$1 [L]

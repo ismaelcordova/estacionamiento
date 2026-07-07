@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# Si el archivo o carpeta solicitado existe realmente (ej. /assets/css/style.css),
+# se sirve tal cual y NO pasa por el router.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Todo lo demás pasa por el Front Controller.
+RewriteRule ^ index.php [L]

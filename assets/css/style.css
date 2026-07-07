@@ -1,0 +1,215 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    background: #0f172a;
+    color: #e2e8f0;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+    text-align: left;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: #0f172a;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+}
+
+main {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    padding: 20px;
+    background: #0f172a;
+    box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    background: #0f172a;
+    border-bottom: 1px solid #1e293b;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 48px;
+    flex-shrink: 0;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
+    height: 100%;
+}
+
+.navbar-link {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 14px;
+    font-size: 13px;
+    color: #64748b;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.navbar-link:hover { color: #e2e8f0; }
+
+.navbar-link.active {
+    color: #e2e8f0;
+    border-bottom-color: #3b82f6;
+}
+
+/* Navbar Search */
+.navbar-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-search input {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    color: #e2e8f0;
+    font-size: 13px;
+    padding: 6px 32px 6px 12px;
+    width: 320px;
+    outline: none;
+    transition: border-color 0.2s, width 0.3s;
+}
+
+.navbar-search input:focus {
+    border-color: #3b82f6;
+    width: 380px;
+}
+
+.navbar-search input::placeholder { color: #475569; }
+
+.search-icon {
+    position: absolute;
+    right: 10px;
+    font-size: 13px;
+    pointer-events: none;
+    color: #475569;
+}
+
+.sin-resultados {
+    text-align: center;
+    padding: 20px;
+    color: #475569;
+    font-size: 13px;
+    display: none;
+}
+
+/* Aside */
+aside {
+    overflow-y: auto;
+    flex-shrink: 0;
+    width: 160px;
+    background: #0f172a;
+    border-right: 1px solid #1e293b;
+    box-sizing: border-box;
+}
+
+.aside-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 0;
+    gap: 2px;
+}
+
+.aside-link {
+    display: block;
+    padding: 8px 16px;
+    font-size: 13px;
+    color: #64748b;
+    text-decoration: none;
+    transition: color 0.2s, background 0.2s;
+    border-radius: 4px;
+    margin: 0 8px;
+}
+
+.aside-link:hover {
+    color: #e2e8f0;
+    background: #1e293b;
+}
+
+/* ── TABLET / MÓVIL ── */
+@media (max-width: 768px) {
+    aside { display: none; }
+
+    main { padding: 10px 10px 80px; }
+
+    .navbar {
+        padding: 0 10px;
+        justify-content: flex-start;
+        gap: 8px;
+        flex-wrap: wrap;
+        height: auto;
+        min-height: 48px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+
+    .navbar-nav { gap: 0; }
+
+    .navbar-link { padding: 0 10px; font-size: 12px; }
+
+    .navbar-search { flex: 1 1 auto; min-width: 0; }
+
+    .navbar-search input {
+        width: 100%;
+        max-width: 220px;
+        font-size: 12px;
+    }
+
+    .navbar-search input:focus { width: 100%; max-width: 260px; }
+}
+
+/* ── MÓVIL PEQUEÑO ── */
+@media (max-width: 420px) {
+    html, body { font-size: 13px; }
+
+    .navbar { padding: 6px 8px; gap: 6px; }
+
+    .navbar-link { padding: 0 8px; font-size: 11px; }
+
+    .navbar-search input { max-width: 160px; font-size: 11px; padding: 6px 28px 6px 10px; }
+
+    .navbar-search input:focus { max-width: 190px; }
+
+    main { padding: 8px 8px 80px; }
+}

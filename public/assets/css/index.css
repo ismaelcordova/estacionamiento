@@ -1,0 +1,401 @@
+.tablas-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    align-items: flex-start;
+}
+
+.sub-contenedor {
+    flex: 1;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 16px;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.tabla-scroll {
+    width: 100%;
+    overflow: auto;
+    transform: rotateX(180deg);
+}
+
+.tabla-scroll::-webkit-scrollbar { height: 6px; }
+.tabla-scroll::-webkit-scrollbar-track { background: #0f172a; border-radius: 4px; }
+.tabla-scroll::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 4px; }
+.tabla-scroll::-webkit-scrollbar-thumb:hover { background: #2563eb; }
+
+.tabla-scroll table {
+    transform: rotateX(180deg);
+    width: max-content;
+    min-width: 100%;
+    border-collapse: collapse;
+    color: #cbd5e1;
+}
+
+table {
+    width: max-content;
+    min-width: 100%;
+    border-collapse: collapse;
+    color: #cbd5e1;
+}
+
+thead { background: #1e3a5f; }
+
+thead th {
+    color: #93c5fd;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+tbody tr {
+    border-bottom: 1px solid #1e293b;
+    transition: background 0.15s;
+}
+
+tbody tr:hover { background: #263448; }
+
+th, td {
+    padding: 10px 14px;
+    text-align: left;
+    white-space: nowrap;
+    font-size: 13px;
+}
+
+input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    accent-color: #3b82f6;
+}
+
+.btn-generar {
+    flex-shrink: 0;
+    align-self: center;
+    margin-top: 12px;
+    padding: 10px 28px;
+    border: none;
+    border-radius: 6px;
+    background: #3b82f6;
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background 0.2s;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-generar:hover { background: #2563eb; }
+
+tbody tr.fila-inactiva { background: #9b0000; color: #fca5a5; }
+tbody tr.fila-inactiva:hover { background: #7f0000; }
+
+/* Switch "Vigencia" (activa/desactiva al trabajador en sin_vigencia) */
+.switch-vigencia {
+    position: relative;
+    display: inline-block;
+    width: 38px;
+    height: 20px;
+}
+
+.switch-vigencia input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.switch-slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: #dc2626;
+    border-radius: 999px;
+    transition: background 0.2s;
+}
+
+.switch-slider::before {
+    content: "";
+    position: absolute;
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.2s;
+}
+
+.switch-vigencia input:checked + .switch-slider {
+    background: #16a34a;
+}
+
+.switch-vigencia input:checked + .switch-slider::before {
+    transform: translateX(18px);
+}
+
+.switch-vigencia input:disabled + .switch-slider {
+    opacity: 0.5;
+    cursor: default;
+}
+
+/* Celdas editables (doble clic en PC / doble toque en móvil) */
+td[data-campo] {
+    cursor: pointer;
+}
+
+td[data-campo]:hover {
+    background: #1e3a5f;
+}
+
+.input-edicion {
+    width: 100%;
+    min-width: 60px;
+    background: #0f172a;
+    border: 1px solid #3b82f6;
+    border-radius: 4px;
+    color: #e2e8f0;
+    padding: 4px 6px;
+    font-size: 13px;
+    outline: none;
+}
+
+.barra-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.filtro-activo {
+    display: flex;
+    gap: 8px;
+    align-self: flex-start;
+}
+
+.btn-agregar {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 6px;
+    background: #22c55e;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-agregar:hover { background: #16a34a; }
+
+/* Columna "Vigencia": oculta por defecto, visible solo con .mostrar-vigencia en <body> */
+.col-vigencia { display: none; }
+body.mostrar-vigencia .col-vigencia { display: table-cell; }
+
+.acciones-superiores {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-vigencia {
+    padding: 8px 20px;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    background: #1e293b;
+    color: #94a3b8;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn-vigencia:hover { background: #263448; color: #e2e8f0; }
+
+.btn-vigencia.activo {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+}
+
+/* Modal "Agregar trabajador" */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 200;
+}
+
+.modal-overlay[hidden] { display: none; }
+
+.modal-caja {
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 24px;
+    width: 100%;
+    max-width: 380px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.modal-caja h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #e2e8f0;
+    text-transform: none;
+    letter-spacing: normal;
+    margin-bottom: 18px;
+}
+
+.modal-caja form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.modal-caja label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+.modal-caja input,
+.modal-caja select {
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    color: #e2e8f0;
+    padding: 9px 10px;
+    font-size: 14px;
+    outline: none;
+}
+
+.modal-caja input:focus,
+.modal-caja select:focus {
+    border-color: #3b82f6;
+}
+
+.modal-error {
+    color: #f87171;
+    font-size: 13px;
+    min-height: 16px;
+    margin: 0;
+}
+
+.modal-acciones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.btn-cancelar,
+.btn-guardar {
+    padding: 9px 18px;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-cancelar {
+    background: #334155;
+    color: #e2e8f0;
+}
+.btn-cancelar:hover { background: #475569; }
+
+.btn-guardar {
+    background: #3b82f6;
+    color: white;
+}
+.btn-guardar:hover { background: #2563eb; }
+.btn-guardar:disabled { opacity: 0.6; cursor: default; }
+
+.btn-filtro {
+    padding: 6px 16px;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    background: #1e293b;
+    color: #64748b;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn-filtro:hover { background: #263448; color: #e2e8f0; }
+
+.btn-filtro.activo {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+}
+
+/* ── MÓVIL ── */
+@media (max-width: 768px) {
+    .tablas-wrapper {
+        flex-direction: column;
+        overflow-y: visible;
+        flex: none;
+        width: 100%;
+    }
+
+    .sub-contenedor { width: 100%; padding: 12px; }
+
+    .barra-superior { flex-direction: column; align-items: stretch; }
+
+    .filtro-activo { width: 100%; }
+
+    .btn-filtro { flex: 1; text-align: center; padding: 8px 4px; }
+
+    .btn-agregar { width: 100%; text-align: center; }
+
+    .acciones-superiores { width: 100%; flex-direction: column; }
+
+    .btn-vigencia { width: 100%; text-align: center; }
+
+    th, td { padding: 8px 10px; font-size: 12px; }
+
+    /* Botón fijo al fondo */
+    .btn-generar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+        padding: 16px;
+        font-size: 15px;
+        font-weight: 600;
+        z-index: 100;
+        box-shadow: 0 -4px 16px rgba(0,0,0,0.5);
+    }
+}
+
+/* ── MÓVIL PEQUEÑO ── */
+@media (max-width: 420px) {
+    .sub-contenedor { padding: 8px; }
+
+    h1 { font-size: 13px; margin-bottom: 10px; }
+
+    .btn-filtro { font-size: 12px; padding: 7px 2px; }
+
+    th, td { padding: 6px 8px; font-size: 11px; }
+}
